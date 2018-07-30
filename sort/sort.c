@@ -19,12 +19,15 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <time.h>
+#include <sys/time.h>
 
 #include <criterion/criterion.h>
 #include <criterion/logging.h>
 
 #define ARR_LEN(x) (sizeof(x)/sizeof(x[0]))
+
+int sorted[10]    = { 2,  3,  4,  5, 15, 19, 26, 27, 48, 50 };
+int unsorted[10]  = { 0 };
 
 void swap(int *x, int *y)
 {
@@ -32,9 +35,6 @@ void swap(int *x, int *y)
     *x = *y;
     *y = tmp;
 }
-
-int sorted[10]    = { 2,  3,  4,  5, 15, 19, 26, 27, 48, 50 };
-int unsorted[10]  = { 0 };
 
 void printIntArray(int *array, int n, const char *name)
 {
@@ -48,10 +48,12 @@ void printIntArray(int *array, int n, const char *name)
     printf(" }\n");
 }
 
-
 void shuffleArray(int *array, int n)
 {
-    srand((unsigned int) time(NULL));
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    srand((unsigned int) tv.tv_usec);
+
     memcpy(array, sorted, n*sizeof(int));
 
     for (int i=0; i<n; i++) {
@@ -62,32 +64,27 @@ void shuffleArray(int *array, int n)
     }
 }
 
-/*
- * Insertion Sort
- * efficient algorithm for sorting a small number of elements.
- * Insertion sort works the way many people sort a hand of playing cards.
- * We start with an empty left hand and the cards face down on the table.
- * We then remove one card at a time from the table and insert it
- * into the correct position in the left hand.
- * To find the correct position for a card,
- * we compare it with each of the cards already in the hand, from right to left,
- * At all times, the cards held in the left hand are sorted,
- * and these cards were originally the top cards of the pile on the table.
- */
 void insertion(int *array, int n)
 {
     for (int j=1; j<n; j++) {
-        int key = array[j]; // 정렬하려고 하는 숫자
+        int key = array[j];
         int i = j - 1;
         while (i>=0 && array[i] > key) {
             array[i+1] = array[i];
             i--;
         }
         array[i+1] = key;
+    }
+}
 
-        char step[32];
-        sprintf(step, "STEP%d", j);
-        printIntArray(array, n, step);
+void bubble(int *array, int n)
+{
+    for (int i=0; i<n-1; i++) {
+        for (int j=0; j<n-i-1; j++) {
+            if (array[j] > array[j+1]) {
+                swap(&array[j], &array[j+1]);
+            }
+        }
     }
 }
 
@@ -110,10 +107,18 @@ void teardown(void)
 
 TestSuite(sort, .init = setup, .fini = teardown);
 
-Test(sort, insertion) {
+Test(sort, Insertion) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
     insertion(unsorted, len);
+    printIntArray(unsorted, len, "After");
+    cr_expect_arr_eq(unsorted, sorted, len);
+}
+
+Test(sort, Bubble) {
+    int len = ARR_LEN(unsorted);
+    printIntArray(unsorted, len, "Before");
+    bubble(unsorted, len);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }

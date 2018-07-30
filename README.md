@@ -1,9 +1,6 @@
 # Algorithms in C
 
-C로 Alogrithm을 구현하는 저장소 입니다. 
-이 저장소에 쓰이는 pseudocode 는 별도의 출처를 표기하지 않는 한 
-[Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-third-edition)
-을 사용합니다.
+C로 Alogrithm을 구현하는 저장소 입니다.
 
 ## Getting Started
 
