@@ -88,6 +88,19 @@ void bubble(int *array, int n)
     }
 }
 
+void selection(int *array, int n)
+{
+    for (int i=0; i<n-1; i++) {
+        int minIdx = i;
+        for (int j=i+1; j<n; j++) {
+            if (array[minIdx] > array[j]) {
+                minIdx = j;
+            }
+        }
+        swap(&array[i], &array[minIdx]);
+    }
+}
+
 /* Test w/ criterion framework below */
 void setup(void)
 {
@@ -107,7 +120,7 @@ void teardown(void)
 
 TestSuite(sort, .init = setup, .fini = teardown);
 
-Test(sort, Insertion) {
+Test(sort, Insertion, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
     insertion(unsorted, len);
@@ -115,10 +128,18 @@ Test(sort, Insertion) {
     cr_expect_arr_eq(unsorted, sorted, len);
 }
 
-Test(sort, Bubble) {
+Test(sort, Bubble, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
     bubble(unsorted, len);
+    printIntArray(unsorted, len, "After");
+    cr_expect_arr_eq(unsorted, sorted, len);
+}
+
+Test(sort, Selection, .disabled = false) {
+    int len = ARR_LEN(unsorted);
+    printIntArray(unsorted, len, "Before");
+    selection(unsorted, len);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }

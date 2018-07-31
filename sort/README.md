@@ -63,3 +63,24 @@ void bubble(int *array, int n)
 ### Complexity
 * Time  : Best O(n) / Average O(n^2) / Worst O(n^2)
 * Space : O(1)
+
+## Selection Sort
+### Code
+```
+void selection(int *array, int n)
+{
+    for (int i=0; i<n-1; i++) {
+        int minIdx = i;
+        for (int j=i+1; j<n; j++) {
+            if (array[minIdx] > array[j]) {
+                minIdx = j;
+            }
+        }
+        swap(&array[i], &array[minIdx]);
+    }
+}
+```
+
+### Complexity
+* Time  : Best O(n^2) / Average O(n^2) / Worst O(n^2)
+* Space : O(1)
