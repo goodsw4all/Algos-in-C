@@ -84,3 +84,25 @@ void selection(int *array, int n)
 ### Complexity
 * Time  : Best O(n^2) / Average O(n^2) / Worst O(n^2)
 * Space : O(1)
+
+## Merge Sort
+### Code
+```
+void mergeSort(int *array, int n)
+{
+    if (n<2)
+        return;
+
+    int mid = n/2;
+    int *left = array;
+    int *right = array + mid;
+
+    mergeSort(left, mid);
+    mergeSort(right, n-mid);
+    merge(mid, n-mid, array);
+}
+```
+
+### Complexity
+* Time  : Best O(n log(n)) / Average O(n log(n)) / Worst O(n log(n))
+* Space : O(n)

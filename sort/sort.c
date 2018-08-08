@@ -20,14 +20,13 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <sys/time.h>
-
 #include <criterion/criterion.h>
-#include <criterion/logging.h>
+
 
 #define ARR_LEN(x) (sizeof(x)/sizeof(x[0]))
 
-int sorted[10]    = { 2,  3,  4,  5, 15, 19, 26, 27, 48, 50 };
-int unsorted[10]  = { 0 };
+int sorted[]    = { 2,  3,  4,  5, 15, 19, 26, 27, 48 };
+int unsorted[9]  = { 0 };
 
 void swap(int *x, int *y)
 {
@@ -101,6 +100,60 @@ void selection(int *array, int n)
     }
 }
 
+void merge(int leftLen, int rightLen, int *array)
+{
+    int len = leftLen + rightLen;
+    int temp[len];
+    int leftIdx = 0, rightIdx = 0, mergeIdx = 0;
+
+    memcpy(temp, array, sizeof(int) * len);
+
+    int *left = temp;
+    int *right = temp + leftLen;
+
+    while (mergeIdx < len) {
+
+        if (leftIdx >= leftLen) {
+            array[mergeIdx] = right[rightIdx];
+            mergeIdx++;
+            rightIdx++;
+            continue;
+        }
+
+        if (rightIdx >= rightLen) {
+            array[mergeIdx] = left[leftIdx];
+            mergeIdx++;
+            leftIdx++;
+            continue;
+        }
+
+        if (left[leftIdx] <= right[rightIdx]) {
+            array[mergeIdx] = left[leftIdx];
+            mergeIdx++;
+            leftIdx++;
+        } else {
+            array[mergeIdx] = right[rightIdx];
+            mergeIdx++;
+            rightIdx++;
+        }
+
+    }
+}
+
+void mergeSort(int *array, int n)
+{
+    if (n<2)
+        return;
+
+    int mid = n/2;
+    int *left = array;
+    int *right = array + mid;
+
+    mergeSort(left, mid);
+    mergeSort(right, n-mid);
+    merge(mid, n-mid, array);
+}
+
 /* Test w/ criterion framework below */
 void setup(void)
 {
@@ -136,10 +189,18 @@ Test(sort, Bubble, .disabled = true) {
     cr_expect_arr_eq(unsorted, sorted, len);
 }
 
-Test(sort, Selection, .disabled = false) {
+Test(sort, Selection, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
     selection(unsorted, len);
+    printIntArray(unsorted, len, "After");
+    cr_expect_arr_eq(unsorted, sorted, len);
+}
+
+Test(sort, Merge, .disabled = false) {
+    int len = ARR_LEN(unsorted);
+    printIntArray(unsorted, len, "Before");
+    mergeSort(unsorted, len);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }
