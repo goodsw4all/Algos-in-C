@@ -63,7 +63,7 @@ void shuffleArray(int *array, int n)
     }
 }
 
-void insertion(int *array, int n)
+void insertionSort(int *array, int n)
 {
     for (int j=1; j<n; j++) {
         int key = array[j];
@@ -76,7 +76,7 @@ void insertion(int *array, int n)
     }
 }
 
-void bubble(int *array, int n)
+void bubbleSort(int *array, int n)
 {
     for (int i=0; i<n-1; i++) {
         for (int j=0; j<n-i-1; j++) {
@@ -87,7 +87,7 @@ void bubble(int *array, int n)
     }
 }
 
-void selection(int *array, int n)
+void selectionSort(int *array, int n)
 {
     for (int i=0; i<n-1; i++) {
         int minIdx = i;
@@ -154,6 +154,31 @@ void mergeSort(int *array, int n)
     merge(mid, n-mid, array);
 }
 
+int partition(int *array, int startIdx, int endIdx)
+{
+    int pivot = array[endIdx];
+    int pi = startIdx;
+
+    for (int i=startIdx; i<endIdx; i++) {
+        if (array[i] < pivot) {
+            swap(&array[i], &array[pi]);
+            pi++;
+        }
+    }
+
+    swap(&array[endIdx], &array[pi]);
+    return pi;
+}
+
+void quickSort(int *array, int startIdx, int endIdx)
+{
+    if (startIdx < endIdx) {
+        int pi = partition(array, startIdx, endIdx);
+        quickSort(array, startIdx, pi-1);
+        quickSort(array, pi+1, endIdx);
+    }
+}
+
 /* Test w/ criterion framework below */
 void setup(void)
 {
@@ -176,7 +201,7 @@ TestSuite(sort, .init = setup, .fini = teardown);
 Test(sort, Insertion, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
-    insertion(unsorted, len);
+    insertionSort(unsorted, len);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }
@@ -184,7 +209,7 @@ Test(sort, Insertion, .disabled = true) {
 Test(sort, Bubble, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
-    bubble(unsorted, len);
+    bubbleSort(unsorted, len);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }
@@ -192,15 +217,23 @@ Test(sort, Bubble, .disabled = true) {
 Test(sort, Selection, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
-    selection(unsorted, len);
+    selectionSort(unsorted, len);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }
 
-Test(sort, Merge, .disabled = false) {
+Test(sort, Merge, .disabled = true) {
     int len = ARR_LEN(unsorted);
     printIntArray(unsorted, len, "Before");
     mergeSort(unsorted, len);
+    printIntArray(unsorted, len, "After");
+    cr_expect_arr_eq(unsorted, sorted, len);
+}
+
+Test(sort, Quick, .disabled = false) {
+    int len = ARR_LEN(unsorted);
+    printIntArray(unsorted, len, "Before");
+    quickSort(unsorted, 0, len-1);
     printIntArray(unsorted, len, "After");
     cr_expect_arr_eq(unsorted, sorted, len);
 }
