@@ -126,7 +126,8 @@ void merge(int leftLen, int rightLen, int *array)
         }
     }
 }
-
+```
+```C++
 void mergeSort(int *array, int n)
 {
     if (n<2)
@@ -148,6 +149,7 @@ void mergeSort(int *array, int n)
 
 ## Quick Sort
 ### Code
+
 ```C++
 int partition(int *array, int startIdx, int endIdx)
 {
@@ -164,7 +166,9 @@ int partition(int *array, int startIdx, int endIdx)
     swap(&array[endIdx], &array[pi]);
     return pi;
 }
+```
 
+```C++
 void quickSort(int *array, int startIdx, int endIdx)
 {
     if (startIdx < endIdx) {
