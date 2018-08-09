@@ -4,24 +4,7 @@
 ### Build
 $ make
 ### Run
-```
-$ ./sort --verbose
-[----] Criterion v2.3.1
-[====] Running 2 tests from sort:
-[RUN ] sort::Bubble
-[----] setup() : Shuffle the Array
-[RUN ] sort::Insertion
- Before   = { 15, 26, 50,  3, 48,  5, 27,  2, 19,  4 }
- After    = {  2,  3,  4,  5, 15, 19, 26, 27, 48, 50 }
-[----] setup() : Shuffle the Array
-[PASS] sort::Bubble: (0.00s)
- Before   = { 15, 50, 26,  3,  5, 27,  4, 19,  2, 48 }
- After    = {  2,  3,  4,  5, 15, 19, 26, 27, 48, 50 }
-[----] teardown()
-[PASS] sort::Insertion: (0.00s)
-[----] teardown()
-[====] Synthesis: Tested: 2 | Passing: 2 | Failing: 0 | Crashing: 0 
-```
+![image](https://user-images.githubusercontent.com/1715346/43891926-88a7a21a-9c05-11e8-9051-ca453037abaa.png)
 
 ## Insertion Sort
 ### Code
