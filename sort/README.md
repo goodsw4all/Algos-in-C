@@ -25,7 +25,7 @@ $ ./sort --verbose
 
 ## Insertion Sort
 ### Code
-```
+```C++
 void insertionSort(int *array, int n)
 {
     for (int j=1; j<n; j++) {
@@ -47,7 +47,7 @@ void insertionSort(int *array, int n)
 
 ## Bubble Sort
 ### Code
-```
+```C++
 void bubbleSort(int *array, int n)
 {
     for (int i=0; i<n-1; i++) {
@@ -66,7 +66,7 @@ void bubbleSort(int *array, int n)
 
 ## Selection Sort
 ### Code
-```
+```C++
 void selectionSort(int *array, int n)
 {
     for (int i=0; i<n-1; i++) {
@@ -87,7 +87,7 @@ void selectionSort(int *array, int n)
 
 ## Merge Sort
 ### Code
-```
+```C++
 void merge(int leftLen, int rightLen, int *array)
 {
     int len = leftLen + rightLen;
@@ -148,7 +148,7 @@ void mergeSort(int *array, int n)
 
 ## Quick Sort
 ### Code
-```
+```C++
 int partition(int *array, int startIdx, int endIdx)
 {
     int pivot = array[endIdx];
