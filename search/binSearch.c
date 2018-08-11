@@ -10,13 +10,12 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (),
+ *         Author:  codeart@gmail.com
  *   Organization:
  *
  * =====================================================================================
  */
 
-#include <stdio.h>
 #include <criterion/criterion.h>
 
 int binarySearch(int *array, int n, int key)
@@ -35,7 +34,6 @@ int binarySearch(int *array, int n, int key)
         } else {
             end = mid-1;
         }
-
     }
 
     return -1;
@@ -136,10 +134,9 @@ void teardown()
 
 TestSuite(search, .init = setup, .fini = teardown);
 
-int array[15]  = { 3, 44, 38,  5, 47, 15, 36, 26, 27,  2, 46,  4, 19, 50, 48 };
 int sorted[15] = { 2,  3,  4,  5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50 };
-int sorted_dup[15] = { 2,  3,  4, 15, 15, 15, 26, 27, 36, 38, 44, 46, 47, 48, 50 };
 int rotated_sorted[15] = { 46, 47, 48, 50, 2,  3,  4,  5, 15, 19, 26, 27, 36, 38, 44 };
+int sorted_dup[15] = { 2,  3,  4, 15, 15, 15, 26, 27, 36, 38, 44, 46, 47, 48, 50 };
 
 Test(binarySearch, UnitTest) {
     cr_expect_eq(binarySearch(sorted, 15, 5), 3, "");

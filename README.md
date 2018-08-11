@@ -1,19 +1,19 @@
 # Algorithms in C
-
-C로 Alogrithm을 구현하는 저장소 입니다.
+Implementation of algorithms & data structures 
 
 ## Getting Started
 
 ### Prerequisites
-Unit Test Framework
+- gcc toolchains, make (of course, you got it if you use mac or linux)
+- Unit Test Framework 
 https://github.com/Snaipe/Criterion.git
 
 *Mac OS X* 
-```
+```bash
 $ brew install snaipe/soft/criterion
 ```
 *Ubuntu/Debian*
-```
+```bash
 $ sudo add-apt-repository ppa:snaipewastaken/ppa
 $ sudo apt-get update
 $ sudo apt-get install criterion-dev
@@ -21,7 +21,8 @@ $ sudo apt-get install criterion-dev
 
 ### Build
 Each folder has *Makefile*
-```
+```bash
+$ cd $FOLDER_NAME_OF_ALGORITHM
 $ make
 ```
 
@@ -31,6 +32,3 @@ $ make
 * **The Practice of Program by Brian W. Kernighan, Rob Pike**
 * https://www.youtube.com/user/mycodeschool 
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
