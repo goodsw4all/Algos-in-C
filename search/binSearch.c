@@ -147,18 +147,14 @@ Test(binarySearch, UnitTest) {
 
 Test(binarySearchRecursive, UnitTest) {
     cr_expect_eq(binarySearchRecursive(sorted, 0, 15-1, 5), 3, "");
-//    cr_expect_eq(binary_search(sorted, 15, 5),  binary_search_recursive(sorted, 0, 15-1, 5));
-//    cr_expect_eq(binary_search(sorted, 15, 19), binary_search_recursive(sorted, 0, 15-1, 19));
-//    cr_expect_eq(binary_search(sorted, 13, 3),  binary_search_recursive(sorted, 0, 15-1, 3));
-//
-//    cr_expect_eq(binary_search_order(sorted_dup, 15, 15, true), 3);
-//    cr_expect_eq(binary_search_order(sorted_dup, 15, 15, false), 5);
 }
 
 Test(binarySearchRotatedIndex, UnitTest) {
+    cr_expect_eq(binarySearchRotatedIndex(sorted, 15), 0, "");
     cr_expect_eq(binarySearchRotatedIndex(rotated_sorted, 15), 4, "");
 }
 
 Test(binarySearchRotated, UnitTest) {
+    cr_expect_eq(binarySearchRotated(sorted, 15, 48), 13, "");
     cr_expect_eq(binarySearchRotated(rotated_sorted, 15, 48), 2, "");
 }
