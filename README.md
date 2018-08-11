@@ -25,9 +25,11 @@ Each folder has *Makefile*
 $ make
 ```
 
-## Authors
+## References
 
-* **GoodSW4all** - *Initial work* - 
+* **Introduction to ALGORIGHTMS by CLRS** *third edition*
+* **The Practice of Program by Brian W. Kernighan, Rob Pike**
+* https://www.youtube.com/user/mycodeschool 
 
 ## License
 
