@@ -4,7 +4,7 @@ CC = gcc
 
 SRCS = *.c
 COMMON_OBJS =
-TARGET = factorial
+TARGET = factorial fibonacci
 INCLUDE_PATH=../include
 CFLAGS = -I$(INCLUDE_PATH) -g -ggdb
 LFLAGS = -lm -lcriterion
@@ -22,6 +22,10 @@ all : $(TARGET)
 #	$(CC) -o $@ $(OBJS) $(LFLAGS)
 
 factorial : factorial.o
+	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
+
+fibonacci : fibonacci.o
+	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
 	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
 
 depend :

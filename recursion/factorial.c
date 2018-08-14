@@ -33,7 +33,7 @@ int factorial(int n)
 /*  Test w/ criterion framework below */
 TestSuite(Factorial, .description = "Factorial recursive function test");
 
-Test(recursion, factorial) {
+Test(recursion, Factorial) {
     cr_log_info("Base Case Test");
     cr_expect_eq(factorial(0), 1, "if n == 0");
     cr_log_info("factorial(5) starts, check the calling sequence");
