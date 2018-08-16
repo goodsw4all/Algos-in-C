@@ -1,21 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  factorial.c
- *
- *    Description:
- *
- *        Version:  1.0
- *        Created:  08/13/18 17:05:07
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  codeart@gmail.com,
- *   Organization:
- *
- * =====================================================================================
- */
-
 #include <criterion/criterion.h>
 
 /*

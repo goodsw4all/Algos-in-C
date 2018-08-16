@@ -1,4 +1,4 @@
-TARGETS = sort recursion search
+TARGETS = sort recursion search linkedList
 
 all : $(TARGETS)
 	@for dir in $(TARGETS); do \

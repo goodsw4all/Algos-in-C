@@ -1,21 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  fibonacci.c
- *
- *    Description:
- *
- *        Version:  1.0
- *        Created:  08/13/18 17:41:37
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  codeart@gmail.com
- *   Organization:
- *
- * =====================================================================================
- */
-
 #include <criterion/criterion.h>
 
 /*

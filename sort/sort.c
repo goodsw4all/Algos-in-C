@@ -1,21 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  sort.c
- *
- *    Description:  various sorting algorithms in C w/ Unit Test
- *
- *        Version:  0.0.1
- *        Created:  07/29/2018 00:15:28
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  codeart@gmail.com
- *   Organization:
- *
- * =====================================================================================
- */
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>

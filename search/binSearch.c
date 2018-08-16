@@ -1,21 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  binSearch.c
- *
- *    Description:
- *
- *        Version:  1.0
- *        Created:  08/10/18 02:51:27
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  codeart@gmail.com
- *   Organization:
- *
- * =====================================================================================
- */
-
 #include <criterion/criterion.h>
 
 int binarySearch(int *array, int n, int key)
@@ -132,26 +114,26 @@ void teardown()
 
 }
 
-TestSuite(search, .init = setup, .fini = teardown);
+TestSuite(BinarySearch, .init = setup, .fini = teardown);
 
 int sorted[15] = { 2,  3,  4,  5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50 };
 int rotated_sorted[15] = { 46, 47, 48, 50, 2,  3,  4,  5, 15, 19, 26, 27, 36, 38, 44 };
 int sorted_dup[15] = { 2,  3,  4, 15, 15, 15, 26, 27, 36, 38, 44, 46, 47, 48, 50 };
 
-Test(binarySearch, UnitTest) {
+Test(BinarySearch, Normal) {
     cr_expect_eq(binarySearch(sorted, 15, 5), 3, "");
 }
 
-Test(binarySearchRecursive, UnitTest) {
+Test(BinarySearch, Recursive) {
     cr_expect_eq(binarySearchRecursive(sorted, 0, 15-1, 5), 3, "");
 }
 
-Test(binarySearchRotatedIndex, UnitTest) {
+Test(BinarySearch, RotatedIndex) {
     cr_expect_eq(binarySearchRotatedIndex(sorted, 15), 0, "");
     cr_expect_eq(binarySearchRotatedIndex(rotated_sorted, 15), 4, "");
 }
 
-Test(binarySearchRotated, UnitTest) {
+Test(BinarySearch, RotatedSearch) {
     cr_expect_eq(binarySearchRotated(sorted, 15, 48), 13, "");
     cr_expect_eq(binarySearchRotated(rotated_sorted, 15, 48), 2, "");
 }
