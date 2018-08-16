@@ -68,7 +68,7 @@ node_t* newNode(int data)
     return node;
 }
 
-void insertNode(node_t **phead, node_t* newNode)
+void insertFirst(node_t **phead, node_t *newNode)
 {
     if (newNode == NULL)
         return;
@@ -101,7 +101,7 @@ bool insertNodeNth(node_t **phead, node_t* new, int nth)
     return true;
 }
 
-void removeNode(node_t **phead)
+void removeFirst(node_t **phead)
 {
     if (*phead == NULL) // empty
         return;
@@ -214,7 +214,7 @@ Test(SinglyLinkedList, insert, .disabled = false) {
     node_t *head = NULL;
 
     for(int i=0; i<3; i++) {
-        insertNode(&head, newNode(i));
+        insertFirst(&head, newNode(i));
     }
 
     printf("Linked List \n");
@@ -239,7 +239,7 @@ Test(SinglyLinkedList, insert, .disabled = false) {
     printRecursiveForward(head);
     removeNodeNth(&head, 1);
     printRecursiveForward(head);
-    removeNode(&head);
+    removeFirst(&head);
     printRecursiveForward(head);
 }
 

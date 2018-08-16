@@ -4,7 +4,7 @@ CC = gcc
 
 SRCS = *.c
 COMMON_OBJS =
-TARGET = singlyLinkedList
+TARGET = singlyLinkedList doublyLinkedList
 INCLUDE_PATH=../include
 CFLAGS = -I$(INCLUDE_PATH) -g -ggdb
 LFLAGS = -lm -lcriterion
@@ -22,6 +22,9 @@ all : $(TARGET)
 #	$(CC) -o $@ $(OBJS) $(LFLAGS)
 
 singlyLinkedList : singlyLinkedList.o
+	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
+
+doublyLinkedList : doublyLinkedList.o
 	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
 
 depend :
