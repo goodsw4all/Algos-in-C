@@ -72,9 +72,9 @@ void teardown(void)
 
 }
 
-TestSuite(SinglyLinkedList, .init = setup, .fini = teardown);
+TestSuite(DoublyLinkedList, .init = setup, .fini = teardown);
 
-Test(SinglyLinkedList, insert, .disabled = false) {
+Test(DoublyLinkedList, operations, .disabled = false) {
     node_t *head = NULL;
 
     printf("Insert First\n");
