@@ -1,5 +1,6 @@
 # Algorithms in C
-Implementation of algorithms & data structures 
+Implementation of algorithms & data structures.<br>
+You may use this code snippets for practice algorithms and data structures in C.<br> 
 
 ## Getting Started
 

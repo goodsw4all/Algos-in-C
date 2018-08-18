@@ -54,7 +54,7 @@ void traverse(node_t *head, void (*func)(node_t *, void *), void *arg)
         (*func)(p, arg);
 }
 
-node_t* newNode(int data)
+node_t* getNewNode(int data)
 {
     node_t* node = (node_t *) malloc(sizeof(node_t));
     if (!node) {
@@ -214,7 +214,7 @@ Test(SinglyLinkedList, insert, .disabled = false) {
     node_t *head = NULL;
 
     for(int i=0; i<3; i++) {
-        insertFirst(&head, newNode(i));
+        insertFirst(&head, getNewNode(i));
     }
 
     printf("Linked List \n");
@@ -228,7 +228,7 @@ Test(SinglyLinkedList, insert, .disabled = false) {
     traverse(head, _nodeCount, &count);
     printf("\nTotal %d elements in the list\n", count);
     printRecursiveForward(head);
-    insertNodeNth(&head, newNode(7), 4);
+    insertNodeNth(&head, getNewNode(7), 4);
     printRecursiveForward(head);
     removeData(&head, 7);
     printRecursiveForward(head);

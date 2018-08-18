@@ -17,7 +17,7 @@ void printAll(node_t **head)
     printf("NULL\n");
 }
 
-node_t* newNode(int data)
+node_t* getNewNode(int data)
 {
     node_t* node = (node_t *) malloc(sizeof(node_t));
     if (!node) {
@@ -57,7 +57,7 @@ void removeFirst(node_t **phead)
 
 /*
  * function insertAfter(List list, Node node, Node newNode)
- * function insertAfter(List list, Node node, Node newNode)
+ * function insertAfter(List list, Node node, Node getNewNode)
  */
 /* Test w/ criterion framework below */
 void setup(void)
@@ -79,7 +79,7 @@ Test(DoublyLinkedList, operations, .disabled = false) {
 
     printf("Insert First\n");
     for(int i=0; i<5; i++) {
-        insertFirst(&head, newNode(i));
+        insertFirst(&head, getNewNode(i));
         printAll(&head);
     }
 

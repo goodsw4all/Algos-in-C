@@ -8,7 +8,7 @@ typedef struct node {
 node_t *front = NULL;
 node_t *rear  = NULL;
 
-node_t *newNode(int data)
+node_t *getNewNode(int data)
 {
     node_t *node = (node_t*) malloc(sizeof(node_t));
     if (!node) {
@@ -19,12 +19,12 @@ node_t *newNode(int data)
 
     return node;
 }
+
 void enqueue(int x)
 {
-    node_t *new = newNode(x);
+    node_t *new = getNewNode(x);
     if (front == NULL && rear == NULL) {
-        front = new;
-        rear  = new;
+        front = rear = new;
         return;
     }
 
@@ -38,9 +38,16 @@ int dequeue()
         return -1;
 
     int data = front->data;
+
     node_t *remove = front;
-    front = front->next;
+    if (front == rear) {
+        front = rear = NULL;
+    } else {
+        front = front->next;
+    }
     free(remove);
+
+    return data;
 }
 
 void printList()
@@ -86,6 +93,7 @@ Test(Queue, operations, .disabled = false) {
         printList();
         int data = dequeue();
     }
+    dequeue();
     printList();
     printf("\n");
 }

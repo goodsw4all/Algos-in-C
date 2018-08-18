@@ -7,7 +7,7 @@ typedef struct node {
 
 node_t *top = NULL;
 
-node_t *newNode(int data)
+node_t *getNewNode(int data)
 {
     node_t *node = (node_t*) malloc(sizeof(node_t));
     if (!node) {
@@ -21,7 +21,7 @@ node_t *newNode(int data)
 
 void push(int data)
 {
-    node_t *new = newNode(data);
+    node_t *new = getNewNode(data);
     if (top == NULL) {
         top = new;
         return;
