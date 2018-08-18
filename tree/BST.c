@@ -6,7 +6,7 @@ typedef struct node {
     struct node *right;
 } node_t;
 
-//<----------------------------- for BFS
+//<----------------------------- Q for BFS
 typedef struct queue_node {
     struct node *data;
     struct queue_node *next;
@@ -51,7 +51,7 @@ node_t *dequeue()
 
     return data;
 }
-//----------------------------> for BFS
+//----------------------------> Q for BFS
 
 node_t *getNewNode(int data)
 {
@@ -83,13 +83,13 @@ void insertNode(node_t **proot, int data)
 
 }
 
-bool searchNode(node_t *root, int data)
+node_t* searchNode(node_t *root, int data)
 {
     if (root == NULL)
-        return false;
+        return NULL;
 
     if (root->data == data)
-        return true;
+        return root;
 
     if (root->data >= data)
         return searchNode(root->left, data);
@@ -97,55 +97,14 @@ bool searchNode(node_t *root, int data)
         return searchNode(root->right, data);
 }
 
-int findMinIterative(node_t *root)
+void removeTree(node_t *root)
 {
     if (root == NULL)
-        return INT32_MIN;
+        return;
 
-    node_t *cur = root;
-
-    while(cur->left != NULL) {
-        cur = cur->left;
-    }
-
-    return cur->data;
-}
-
-int findMinRecursive(node_t *root)
-{
-    if (root == NULL)
-        return INT32_MIN;
-
-    if (root->left == NULL)
-        return root->data;
-
-    return findMinRecursive(root->left);
-
-}
-
-int findMaxIterative(node_t *root)
-{
-    if (root == NULL)
-        return INT32_MAX;
-
-    node_t *cur = root;
-    while (cur->right != NULL) {
-        cur = cur->right;
-    }
-
-    return cur->data;
-}
-
-int findMaxRecursive(node_t *root)
-{
-    if (root == NULL)
-        return INT32_MAX;
-
-    node_t *cur = root;
-    if (cur->right == NULL)
-        return cur->data;
-
-    return findMaxRecursive(cur->right);
+    if (root->left) removeTree(root->left);
+    if (root->right) removeTree(root->right);
+    free(root);
 }
 
 #define ROOT_VISIT(x) \
@@ -201,6 +160,94 @@ void postorderDFS(node_t *root)
     postorderDFS(root->left);
     postorderDFS(root->right);
     ROOT_VISIT(root->data);
+}
+
+/* SIZE : 총 노드의 숫자 */
+int getTreeSize(node_t *root)
+{
+    if (root == NULL)
+        return 0;
+    return getTreeSize(root->left) + getTreeSize(root->right)  + 1; // 1은 Root 자신
+}
+
+#define MAX(x,y) ((x)>(y) ? (x) : (y))
+
+/* MAX Depth : 최대 경로(Edge) 구하기 */
+int getTreeMaxDepth(node_t *root)
+{
+    if (root == NULL) // empty
+        return 0;
+
+    int leftDepth = getTreeMaxDepth(root->left);
+    int rightDepth = getTreeMaxDepth(root->right);
+
+    return MAX(leftDepth, rightDepth) + 1;
+}
+
+int findMinIterative(node_t *root)
+{
+    if (root == NULL)
+        return INT32_MIN;
+
+    node_t *cur = root;
+
+    while(cur->left != NULL) {
+        cur = cur->left;
+    }
+
+    return cur->data;
+}
+
+int findMinRecursive(node_t *root)
+{
+    if (root == NULL)
+        return INT32_MIN;
+
+    if (root->left == NULL)
+        return root->data;
+
+    return findMinRecursive(root->left);
+}
+
+int findMaxIterative(node_t *root)
+{
+    if (root == NULL)
+        return INT32_MAX;
+
+    node_t *cur = root;
+    while (cur->right != NULL) {
+        cur = cur->right;
+    }
+
+    return cur->data;
+}
+
+int findMaxRecursive(node_t *root)
+{
+    if (root == NULL)
+        return INT32_MAX;
+
+    node_t *cur = root;
+    if (cur->right == NULL)
+        return cur->data;
+
+    return findMaxRecursive(cur->right);
+}
+
+bool isBST(node_t *root, int minValue, int maxValue)
+{
+    if (root == NULL)
+        return true;
+
+    if (root->data > minValue
+            && root->data < maxValue
+            && isBST(root->left, minValue, root->data)
+            && isBST(root->right, root->data, maxValue)) {
+        return true;
+
+    } else {
+        return false;
+    }
 }
 
 /* Test w/ criterion framework below */
@@ -263,13 +310,37 @@ Test(BST, order, .disabled = false) {
      *       4     7   13
      *
      */
+    // Traversal
 
+    printf("    Tree Structure\n"
+           "          8\n"
+           "       /     \\\n"
+           "     3        10\n"
+           "   /   \\        \\\n"
+           "  1     6        14\n"
+           "      /   \\     /\n"
+           "     4     7   13""\n");
     BFS(root);
-    puts("Level-Order");
+    puts("Level-Order (BFS)");
     preorderDFS(root);
-    puts("Pre-Order");
+    puts("Pre-Order   (DFS)");
     inorderDFS(root);
-    puts("In-Order");
+    puts("In-Order    (DFS)");
     postorderDFS(root);
-    puts("Post-Order");
+    puts("Post-Order  (DFS)");
+
+    // Tree Info
+    printf("Tree Info\n");
+    printf(" - Size      (How many nodes?)                 : %d\n", getTreeSize(root));
+    printf(" - Max Depth (# of nodes in the longest Path?) : %d\n", getTreeMaxDepth(root));
+    printf(" - Min       (follow left)                     : %d\n", findMinRecursive(root));
+    printf(" - Max       (follow right)                    : %d\n", findMaxRecursive(root));
+    printf("%s BST\n", (isBST(root, INT32_MIN, INT32_MAX) ? "It's" : "It's not"));
+    node_t *node = searchNode(root, 14);
+    printf("Get %d, and swap left(%d), right(NULL)\n", node->data, node->left->data);
+    node->right = node->left;
+    node->left = NULL;
+    printf("%s BST\n", (isBST(root, INT32_MIN, INT32_MAX) ? "It's" : "It's not"));
+    printf("\n");
+
 }
