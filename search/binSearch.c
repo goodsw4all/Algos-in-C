@@ -64,8 +64,6 @@ int binarySearchRotatedIndex(int *array, int n)
         } else {
             end = mid-1;
         }
-
-        // when break??
     }
 
     return -1;
