@@ -4,7 +4,7 @@ CC = gcc
 
 SRCS = *.c
 COMMON_OBJS =
-TARGET = binSearch
+TARGET = binarySearch
 INCLUDE_PATH=../include
 CFLAGS = -I$(INCLUDE_PATH) -g -ggdb
 LFLAGS = -lm -lcriterion
@@ -21,7 +21,7 @@ all : $(TARGET)
 #$(TARGET) : $(OBJS)
 #	$(CC) -o $@ $(OBJS) $(LFLAGS)
 
-binSearch : binSearch.o
+binarySearch : binarySearch.o
 	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
 
 depend :
