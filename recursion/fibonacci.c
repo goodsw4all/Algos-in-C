@@ -35,7 +35,7 @@ int fiboIterative(int n) {
     return ret;
 }
 
-static int memo[10];
+static int memo[10]; // 반복되는 계산이 발생하는 경우에 메모리를 사용해서 저장해서 사용 trade off
 int fiboMemoization(int n)
 {
     int ret = 0;

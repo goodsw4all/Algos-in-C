@@ -6,7 +6,7 @@
 int factorial(int n)
 {
     cr_log_info("Factorial(%d) called\n", n);
-    if (n == 0)
+    if (n == 0) //Important : base condition
         return 1;
 
     return n * factorial(n-1);

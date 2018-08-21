@@ -26,7 +26,6 @@ factorial : factorial.o
 
 fibonacci : fibonacci.o
 	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
-	$(CC) $(CFLAGS) -o $@ $? $(COMMON_OBJS) $(LFLAGS)
 
 depend :
 	$(CC) $(CFLAGS) -MM $(SRCS) > $(DEPEND_FILE)
