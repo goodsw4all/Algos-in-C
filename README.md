@@ -28,6 +28,8 @@ Each folder has *Makefile*
 $ cd $FOLDER_NAME_OF_ALGORITHM
 $ make
 ```
+### Run
+![image](https://user-images.githubusercontent.com/1715346/43891926-88a7a21a-9c05-11e8-9051-ca453037abaa.png)
 
 ## References
 

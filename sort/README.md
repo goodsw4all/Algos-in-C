@@ -1,10 +1,5 @@
 # Sorting Algorithms
 
-## Build & Run
-### Build
-$ make
-### Run
-![image](https://user-images.githubusercontent.com/1715346/43891926-88a7a21a-9c05-11e8-9051-ca453037abaa.png)
 
 ## Insertion Sort
 ### Code
