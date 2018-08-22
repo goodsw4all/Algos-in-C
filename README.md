@@ -1,6 +1,8 @@
 # Algorithms in C
-Implementation of algorithms & data structures.<br>
-You may use this code snippets for practice algorithms and data structures in C.<br> 
+알고리즘을 C로 구현해보는 개인 연습용 저장소 입니다.<br>
+각 알고리즘의 설명은 함수 위 comment를 달았습니다<br>
+알고리즘을 여러 자료를 통해 공부하고 구현해보는 것이라 자유롭게 쓰셔도 좋아요<br>
+code snippets for practice algorithms and data structures in C.<br> 
 
 ## Getting Started
 
@@ -31,5 +33,9 @@ $ make
 
 * **Introduction to ALGORIGHTMS by CLRS** *third edition*
 * **The Practice of Program by Brian W. Kernighan, Rob Pike**
-* https://www.youtube.com/user/mycodeschool 
+* https://www.youtube.com/user/mycodeschool My Code School 영어
+* https://www.youtube.com/channel/UCWMAh9cSkEn8v42YRO90BHA 엔지니어대한민국) 우리말
+
+
+
 
