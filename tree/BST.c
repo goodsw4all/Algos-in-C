@@ -338,8 +338,10 @@ bool isBST(node_t *root, int minValue, int maxValue)
         return true;
 
     if (root->data > minValue
-            && root->data < maxValue
-            && isBST(root->left, minValue, root->data)
+            && root->data < maxValue )
+        return false;
+
+    if (isBST(root->left, minValue, root->data)
             && isBST(root->right, root->data, maxValue)) {
         return true;
 
