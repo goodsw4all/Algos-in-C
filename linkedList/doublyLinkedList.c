@@ -6,14 +6,12 @@ typedef struct node {
     struct node *next;
 } node_t;
 
-void printAll(node_t **head)
+void printAll(node_t *head)
 {
-    node_t *p = *head;
-
-    while(p) {
+    node_t *p = head;
+    for(; p; p=p->next)
         printf("%d -> ", p->data);
-        p = p->next;
-    }
+
     printf("NULL\n");
 }
 
@@ -80,13 +78,13 @@ Test(DoublyLinkedList, operations, .disabled = false) {
     printf("Insert First\n");
     for(int i=0; i<5; i++) {
         insertFirst(&head, getNewNode(i));
-        printAll(&head);
+        printAll(head);
     }
 
     printf("Remove First\n");
     for(int i=0; i<5; i++) {
         removeFirst(&head);
-        printAll(&head);
+        printAll(head);
     }
 }
 

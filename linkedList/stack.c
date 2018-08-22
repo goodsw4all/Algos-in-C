@@ -22,7 +22,7 @@ node_t *getNewNode(int data)
 void push(int data)
 {
     node_t *new = getNewNode(data);
-    if (top == NULL) {
+    if (top == NULL) { // Stack 이 비어 있으면
         top = new;
         return;
     }
@@ -33,7 +33,7 @@ void push(int data)
 
 int pop()
 {
-    if (top == NULL) {
+    if (top == NULL) { // Stack 이 비어 있으면
         printf("Empty!!!");
         return -1;
     }
@@ -47,7 +47,7 @@ int pop()
 
 void printList()
 {
-    node_t *temp = top;
+    node_t *temp = top; // Top은 Bottom 방향으로 next를 가지고 있다
     while(temp != NULL) {
         printf("| %d | ", temp->data);
         temp = temp->next;

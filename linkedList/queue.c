@@ -23,7 +23,7 @@ node_t *getNewNode(int data)
 void enqueue(int x)
 {
     node_t *new = getNewNode(x);
-    if (front == NULL && rear == NULL) {
+    if (front == NULL && rear == NULL) { // 비어 있다면
         front = rear = new;
         return;
     }
@@ -34,7 +34,7 @@ void enqueue(int x)
 
 int dequeue()
 {
-    if (front == NULL && rear == NULL)
+    if (front == NULL && rear == NULL) // 비어 있다면
         return -1;
 
     int data = front->data;

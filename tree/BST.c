@@ -328,8 +328,10 @@ int findMaxRecursive(node_t *root)
 /*
  *   BST check
  *   isBST(root, INT32_MIN, INT32_MAX);
+ *
  *   현재 값은 최소값보다 크고 최대값보다 작아야 함
- *   && 왼쪽 트리로는 최소값과 최대값(현재값으로, 왼쪽에는 부모 노드값이 최대값이므로)해서 재귀호출
+ *
+ *   왼쪽 트리로는 최소값과 최대값(현재값으로, 왼쪽에는 부모 노드값이 최대값이므로)해서 재귀호출
  *   && 오른쪽 트리로는 최소값(현재값)과 최대값으로 하여 재귀호출
  */
 bool isBST(node_t *root, int minValue, int maxValue)
